@@ -36,6 +36,7 @@ Step 4: Custom Domain
 If you have a custom domain, you can set it up to connect to the application using Nginx Proxy Manager. Adjust the configuration as needed.
 
 Conclusion:
+
 Congratulations! You’ve successfully set up your Full-Stack FastAPI and React application. Feel free to explore the code, customize it, and build amazing features on top of this foundation.
 
 - [Frontend README](./frontend/README.md)
