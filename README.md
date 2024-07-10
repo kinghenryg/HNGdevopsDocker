@@ -11,7 +11,7 @@ Docker Compose: This tool simplifies managing multi-container applications.
 Step 1: Clone the Repository
 Start by cloning the repository:
 
-git clone <repository_url>
+git clone <repository_url>.git
 cd Full-Stack-Web-App
 
 Replace <repository_url> with the actual URL of your repository.
@@ -38,3 +38,7 @@ If you have a custom domain, you can set it up to connect to the application usi
 Conclusion:
 
 Congratulations! You’ve successfully set up your Full-Stack FastAPI and React application. Feel free to explore the code, customize it, and build amazing features on top of this foundation.
+
+- [Frontend README](./frontend/README.md)
+- [Backend README](./backend/README.md)
+
