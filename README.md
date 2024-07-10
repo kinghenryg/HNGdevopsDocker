@@ -11,8 +11,10 @@ Docker Compose: This tool simplifies managing multi-container applications.
 Step 1: Clone the Repository
 Start by cloning the repository:
 
+```console
 git clone <repository_url>
 cd Full-Stack-Web-App
+```
 
 Replace <repository_url> with the actual URL of your repository.
 
