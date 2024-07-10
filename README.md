@@ -1,4 +1,4 @@
-**Full-Stack FastAPI and React Application Setup Guide**
+Full-Stack FastAPI and React Application Setup Guide
 
 Introduction
 Welcome to the Full-Stack FastAPI and React template repository! In this guide, we’ll cover everything you need to know to set up and run your own full-stack application. By the end, you’ll have a working application with a FastAPI backend and a ReactJS frontend.
@@ -38,7 +38,3 @@ If you have a custom domain, you can set it up to connect to the application usi
 Conclusion:
 
 Congratulations! You’ve successfully set up your Full-Stack FastAPI and React application. Feel free to explore the code, customize it, and build amazing features on top of this foundation.
-
-- [Frontend README](./frontend/README.md)
-- [Backend README](./backend/README.md)
-
