@@ -1,0 +1,70 @@
+# This is the GitHub Actions workflow configuration file.
+# It defines the CI/CD pipeline for deploying PR changes using Docker.
+
+name: Deploy PR
+
+# Define the events that will trigger this workflow.
+on:
+  # Triggers the workflow when a pull request is opened, synchronized, or reopened.
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+# Define the jobs to be executed as part of this workflow.
+jobs:
+  build-and-deploy:
+    # The type of machine to run this job on.
+    runs-on: ubuntu-latest
+
+    # Define environment variables used throughout the job.
+    env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SERVER_IP: ${{ secrets.SERVER_IP }}
+      SERVER_USER: ${{ secrets.SERVER_USER }}
+
+    # Steps are the individual tasks to be executed as part of this job.
+    steps:
+      # Step 1: Check out the repository to the runner.
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Docker on the runner.
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      # Step 3: Log in to Docker Hub using credentials stored in GitHub Secrets.
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      # Step 4: Build the Docker image for the PR branch.
+      - name: Build the Docker image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/pr-${{ github.event.number }}:${{ github.sha }} .
+
+      # Step 5: Push the Docker image to Docker Hub.
+      - name: Push the Docker image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/pr-${{ github.event.number }}:${{ github.sha }}
+
+      # Step 6: Set up SSH agent and add the SSH private key for server access.
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # Step 7: Deploy the Docker container on the remote server.
+      - name: Deploy to server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+            docker pull ${{ secrets.DOCKER_USERNAME }}/pr-${{ github.event.number }}:${{ github.sha }}
+            docker stop pr-${{ github.event.number }} || true
+            docker rm pr-${{ github.event.number }} || true
+            docker run -d --name pr-${{ github.event.number }} -p 80:80 ${{ secrets.DOCKER_USERNAME }}/pr-${{ github.event.number }}:${{ github.sha }}
+          EOF
+
+      # Step 8: Post a comment on the PR with the deployment status and link.
+      - name: Comment on PR
+        uses: peter-evans/commit-comment@v1
+        with:
+          body: |
+            :rocket: PR #${{ github.event.number }} has been deployed!
+            View it at http://${{ secrets.SERVER_IP }}
